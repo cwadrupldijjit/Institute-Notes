@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="PageApp">
+	<head>
+		<meta charset="UTF-8">
+		<title>Intstitute Notes Portal</title>
+		
+		<link rel="stylesheet" href="bower_components/angular-material/angular-material.min.js">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	
+	<body ng-controller="MainController as mc">
+		<div class="post" ng-repeat="post in mc.posts">
+			<h1 class="post-head">{{ post.main.title }}</h1>
+			<div class="post-content">
+				<h3 class="post-sub-head">{{ post.talks.title + ":" }}</h3>
+				<div ng-repeat="speaker in post.talks.speakers">
+					<h4 class="speaker-name"> {{ speaker.name }} </h4>
+					<p class="public-notes" ng-repeat="note in speaker.notes">
+						{{ note }}
+					</p>
+				</div>
+				
+				
+				<h3 class="post-sub-head">{{ post.otherThoughts.name + ":" }}</h3>
+				<div ng-repeat="publicNote in post.otherThoughts.publicNotes">
+					<p class="public-notes" ng-repeat="note in publicNote.notes">
+						{{ note }}
+					</p>
+				</div>
+				
+				<div ng-repeat="privateNote in post.otherThoughts.privateNotes">
+					<p class="private-notes" ng-repeat="note in privateNote.notes">
+						{{ note }}
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<script src="bower_components/jquery/jquery.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-material/angular-material.min.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
